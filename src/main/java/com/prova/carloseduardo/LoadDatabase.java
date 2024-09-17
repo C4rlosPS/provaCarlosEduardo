@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Configuration
 class LoadDatabase {
 
@@ -13,11 +15,10 @@ class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(VeiculoRepository repository) {
-
         return args -> {
-            log.info("Preloading " + repository.save(new Veiculo("gol","axy",2014)));
-            log.info("Preloading " + repository.save(new Veiculo("saveiro","axt",2000)));
+            log.info("Preloading " + repository.save(new Veiculo("gol", "axy", 2014)));
+
+            log.info("Preloading " + repository.save(new Veiculo("saveiro", "axt", 2000)));
         };
     }
-
 }

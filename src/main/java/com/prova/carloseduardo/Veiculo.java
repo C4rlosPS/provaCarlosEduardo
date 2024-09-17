@@ -1,23 +1,21 @@
 package com.prova.carloseduardo;
-import java.util.List;
+
 import java.util.Objects;
-import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Veiculo {
 
-    private @Id
-    @GeneratedValue Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String modelo;
     private String placa;
     private Integer ano;
-    @OneToMany(mappedBy="veiculo")
-    private List<Acessorio> acessorios;
+
     public Veiculo(String modelo, String placa, Integer ano) {
         this.modelo = modelo;
         this.placa = placa;
@@ -59,19 +57,11 @@ public class Veiculo {
         this.ano = ano;
     }
 
-
-
-
-
     @Override
     public boolean equals(Object o) {
-
-        if (this == o)
-            return true;
-        if (!(o instanceof Veiculo))
-            return false;
+        if (this == o) return true;
+        if (!(o instanceof Veiculo)) return false;
         Veiculo veiculo = (Veiculo) o;
-
         return Objects.equals(this.id, veiculo.id)
                 && Objects.equals(this.modelo, veiculo.modelo)
                 && Objects.equals(this.placa, veiculo.placa)
@@ -85,15 +75,11 @@ public class Veiculo {
 
     @Override
     public String toString() {
-        return "Veiculo" +
-                "{" + "id=" + this.id
-                + ", modelo='" + this.modelo + '\''
-                + ", placa='" + this.placa + '\''
-                + ", ano='" + this.ano + '\''
-                + ", acessorio='" + this.acessorios + '\''
-                + '}';
+        return "Veiculo{" +
+                "id=" + id +
+                ", modelo='" + modelo + '\'' +
+                ", placa='" + placa + '\'' +
+                ", ano=" + ano +
+                '}';
     }
-
-
-
 }

@@ -20,21 +20,17 @@ class VeiculoController {
         this.repository = repository;
     }
 
-
-    // Aggregate root
-    // tag::get-aggregate-root[]
     @GetMapping("/veiculos")
     List<Veiculo> all() {
         return repository.findAll();
     }
-    // end::get-aggregate-root[]
+
 
     @PostMapping("/veiculos")
     Veiculo newVeicle(@RequestBody Veiculo novoVeiculo) {
         return repository.save(novoVeiculo);
     }
 
-    // Single item
 
     @GetMapping("/veiculos/{id}")
     Veiculo one(@PathVariable Long id) {

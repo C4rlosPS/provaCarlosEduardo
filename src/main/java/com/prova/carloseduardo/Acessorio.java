@@ -1,26 +1,26 @@
 package com.prova.carloseduardo;
 
-import jakarta.persistence.*;
-
 import java.util.Objects;
 
-@Entity
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
+@Entity
 public class Acessorio {
 
-    @ManyToOne
-    @JoinColumn(name="veiculo_id", nullable=false)
-    private Veiculo veiculo;
-
-    private @Id
-    @GeneratedValue Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
+    private Integer veiculoId;
     private String nome;
 
-    public Acessorio(){}
-
-    public Acessorio(String nome, Veiculo veiculo) {
+    public Acessorio(Integer veiculoId, String nome) {
+        this.veiculoId = veiculoId;
         this.nome = nome;
-        this.veiculo = veiculo;
+    }
+
+    public Acessorio() {
     }
 
     public Long getId() {
@@ -31,6 +31,14 @@ public class Acessorio {
         this.id = id;
     }
 
+    public Integer getVeiculoId() {
+        return veiculoId;
+    }
+
+    public void setVeiculoId(Integer veiculoId) {
+        this.veiculoId = veiculoId;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -38,26 +46,28 @@ public class Acessorio {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     @Override
     public boolean equals(Object o) {
-
-        if (this == o)
-            return true;
-        if (!(o instanceof Acessorio))
-            return false;
+        if (this == o) return true;
+        if (!(o instanceof Acessorio)) return false;
         Acessorio acessorio = (Acessorio) o;
-        return Objects.equals(this.id, acessorio.id) && Objects.equals(this.nome, acessorio.nome);
+        return Objects.equals(this.id, acessorio.id)
+                && Objects.equals(this.veiculoId, acessorio.veiculoId)
+                && Objects.equals(this.nome, acessorio.nome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.nome);
+        return Objects.hash(this.id, this.veiculoId, this.nome);
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + this.id + ", name='" + this.nome + '}';
+        return "Acessorio{" +
+                "id=" + id +
+                ", veiculoId=" + veiculoId +
+                ", nome='" + nome + '\'' +
+                '}';
     }
-
-
 }
